@@ -42,9 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Http\HttpClientDownloader.cs" />
     <Compile Include="Infrastructure\EncodingExtensions.cs" />
     <Compile Include="GlobalRedirectHandler.cs" />
-    <Compile Include="HttpClientEntry.cs" />
+    <Compile Include="Http\HttpClientEntry.cs" />
     <Compile Include="Infrastructure\ReadOnlyEnumerable.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Site.cs" />
@@ -54,8 +55,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Http\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -101,7 +101,7 @@ namespace WebBot.Console
 
             using (var startup = new Startup())
             {
-                startup.Run(args, startUrl: "www.google.com");
+                startup.Run(args, startUrl: "http://www.google.com");
             }
         }
     }
@@ -122,6 +122,8 @@ namespace WebBot.Console
             services.AddLogging((builder) => builder.SetMinimumLevel(LogLevel.Debug));
 
             services.AddTransient<Logic.WebBot>();
+            services.AddTransient<PageDownloader>();
+            services.AddTransient<IHttpPageDownloader, ChromeWebDriver>();
 
             var serviceProvider = services.BuildServiceProvider();
             serviceProvider.GetRequiredService<ILoggerFactory>()

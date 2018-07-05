@@ -135,6 +135,8 @@
     <Compile Include="Infrastructure\EncodingExtensions.cs" />
     <Compile Include="Infrastructure\ReadOnlyEnumerable.cs" />
     <Compile Include="PageDownload\ChromeWebDriver.cs" />
+    <Compile Include="PageDownload\IHttpPageDownloader.cs" />
+    <Compile Include="PageDownload\PageDownloader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Site.cs" />

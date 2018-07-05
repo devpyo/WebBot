@@ -26,6 +26,7 @@ namespace WebBot.Logic.PageDownload
                 logger.LogInformation("Title = {0}", driver.Title);
 
                 // 어질리티 팩
+
                 var doc = new HtmlDocument();
                 doc.LoadHtml(driver.PageSource);
                 var nodes = doc

@@ -95,9 +95,52 @@ namespace WebBot.Console
 
         static void Main(string[] args)
         {
-            RunTest_GetPageWithCustomRequestAndSite();
-            RunTest_RestSharp();
-            RunTest_ChromeDriverWithDI();
+            //RunTest_GetPageWithCustomRequestAndSite();
+            //RunTest_RestSharp();
+            //RunTest_ChromeDriverWithDI();
+
+            using (var startup = new Startup())
+            {
+                startup.Run(args, startUrl: "www.google.com");
+            }
+        }
+    }
+
+    public class Startup : IDisposable
+    {
+        readonly ServiceProvider serviceProvider;
+
+        public Startup()
+        {
+            serviceProvider = BuildDi();
+        }
+
+        ServiceProvider BuildDi()
+        {
+            var services = new ServiceCollection();
+            services.AddSingleton<ILoggerFactory, LoggerFactory>();
+            services.AddLogging((builder) => builder.SetMinimumLevel(LogLevel.Debug));
+
+            services.AddTransient<Logic.WebBot>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            serviceProvider.GetRequiredService<ILoggerFactory>()
+                .AddNLog(new NLogProviderOptions { CaptureMessageTemplates = true, CaptureMessageProperties = true });
+            return serviceProvider;
+        }
+
+        public void Run(string[] args, string startUrl) // TODO: configuration으로 받아온다.
+        {
+            var logger = serviceProvider.GetService<ILogger<Program>>();
+            logger.LogInformation("Startup Run");
+
+            var bot = serviceProvider.GetService<Logic.WebBot>();
+            bot.Run(startUrl);
+        }
+
+        void IDisposable.Dispose()
+        {
+            serviceProvider.Dispose();
         }
     }
 }

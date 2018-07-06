@@ -1,4 +1,6 @@
-﻿namespace WebBot.Logic.PageDownload
+﻿using System;
+
+namespace WebBot.Logic.PageDownload
 {
     public class PageDownloader
     {
@@ -9,7 +11,7 @@
             this.httpPageDownloader = httpPageDownloader;
         }
 
-        public string Download(string url)
+        public IObservable<string> Download(string url)
         {
             return httpPageDownloader.ReadPage(url);
         }

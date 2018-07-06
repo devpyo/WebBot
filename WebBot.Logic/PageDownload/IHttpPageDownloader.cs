@@ -1,7 +1,9 @@
-﻿namespace WebBot.Logic.PageDownload
+﻿using System;
+
+namespace WebBot.Logic.PageDownload
 {
     public interface IHttpPageDownloader
     {
-        string ReadPage(string url);
+        IObservable<string> ReadPage(string url);
     }
 }

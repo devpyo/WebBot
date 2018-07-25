@@ -15,5 +15,10 @@ namespace WebBot.Logic.PageDownload
         {
             return httpPageDownloader.ReadPage(url);
         }
+
+        public string DownloadText(string url)
+        {
+            return httpPageDownloader.ReadText(url);
+        }
     }
 }

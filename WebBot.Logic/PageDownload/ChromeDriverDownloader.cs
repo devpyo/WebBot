@@ -27,5 +27,16 @@ namespace WebBot.Logic.PageDownload
                 }
             });
         }
+
+        string IHttpPageDownloader.ReadText(string url)
+        {
+            var options = new ChromeOptions();
+            options.AddArguments("--headless");
+            using (var driver = new ChromeDriver(@"./", options)) // TODO: 매번 만들면 안된다.
+            {
+                driver.Url = url;
+                return driver.PageSource;
+            }
+        }
     }
 }

@@ -138,6 +138,8 @@
     <Compile Include="PageDownload\ChromeDriverDownloader.cs" />
     <Compile Include="PageDownload\IHttpPageDownloader.cs" />
     <Compile Include="PageDownload\PageDownloader.cs" />
+    <Compile Include="Page\IPageModel.cs" />
+    <Compile Include="Page\Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Site.cs" />

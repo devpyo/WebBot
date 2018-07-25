@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using WebBot.Logic;
 using WebBot.Logic.Http;
+using WebBot.Logic.Page;
 using WebBot.Logic.PageDownload;
 
 namespace WebBot.Console
@@ -25,32 +26,6 @@ namespace WebBot.Console
 
             System.Console.WriteLine($"[{result.StatusCode}] {downloader.ReadContent(site, result).Substring(0, 500)}");
         }
-
-        //interface IWebBot
-        //{
-        //    IBotConfigure Configure { get; }
-        //    IPage GetPage();
-        //}
-
-        //interface IHttpDownloader
-        //{
-
-        //}
-
-        //interface IPage
-        //{
-
-        //}
-
-        //interface IBotConfigure
-        //{
-        //    IHttpDownloader httpDownloader { get;  }
-        //}
-
-        //class NewCrawler : IWebBot
-        //{ 
-        //    public IBotConfigure Configure => throw new NotImplementedException();
-        //}
 
         static void Main(string[] args)
         {
@@ -74,6 +49,11 @@ namespace WebBot.Console
                 startup.Run(args, startUrl: url);
             }
         }
+    }
+
+    public class TestModel : IPageModel
+    {
+
     }
 
     public class Startup : IDisposable
@@ -108,7 +88,10 @@ namespace WebBot.Console
             logger.LogInformation("Startup Run");
 
             var bot = serviceProvider.GetService<Logic.WebBot>();
-            bot.Run(startUrl);
+            //bot.Run(startUrl);
+
+            var page = bot.ReadPage<TestModel>(startUrl);
+            System.Console.WriteLine(page.Text.Substring(0, 100));
         }
 
         void IDisposable.Dispose()

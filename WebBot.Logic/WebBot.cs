@@ -3,6 +3,8 @@ using WebBot.Logic.PageDownload;
 using System.Reactive.Linq;
 using HtmlAgilityPack;
 using System.Collections.Generic;
+using System;
+using WebBot.Logic.Page;
 
 namespace WebBot.Logic
 {
@@ -17,6 +19,7 @@ namespace WebBot.Logic
             this.pageDownloader = pageDownloader;
         }
 
+        [Obsolete]
         public void Run(string startUrl)
         {
             logger.LogInformation($"WebBot Run : {startUrl}");
@@ -43,6 +46,12 @@ namespace WebBot.Logic
             }).Wait();
         }
 
-        
+        public Page<ModelType> ReadPage<ModelType>(string url) where ModelType : IPageModel
+        {
+            logger.LogDebug($"ReadPage: {url}");
+
+            var text = pageDownloader.DownloadText(url);
+            return new Page<ModelType>(text);
+        }
     }
 }

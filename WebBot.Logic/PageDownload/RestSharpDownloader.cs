@@ -20,5 +20,12 @@ namespace WebBot.Logic.PageDownload
             var request = new RestRequest();
             return Observable.FromAsync(token => restSharpClient.ExecuteTaskAsync(request, token)).Select(x => x.Content);
         }
+
+        string IHttpPageDownloader.ReadText(string url)
+        {
+            var restSharpClient = new RestClient(url);
+            var request = new RestRequest();
+            return restSharpClient.Execute(request).Content;
+        }
     }
 }

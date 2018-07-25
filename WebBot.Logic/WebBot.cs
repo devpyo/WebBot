@@ -25,9 +25,7 @@ namespace WebBot.Logic
             {
                 var doc = new HtmlDocument();
                 doc.LoadHtml(content);
-                var nodes = doc
-                    .DocumentNode
-                    .SelectNodes(@"//*[@id=""board_list""]/div/div[2]/table/tbody/tr[*]");
+                var nodes = doc.DocumentNode.SelectNodes(@"//*[@id=""board_list""]/div/div[2]/table/tbody/tr[*]");
 
                 //File.WriteAllText(@"d:/test.txt", driver.PageSource);
 
@@ -44,5 +42,7 @@ namespace WebBot.Logic
                 items.ForEach(x => logger.LogInformation(x));
             }).Wait();
         }
+
+        
     }
 }

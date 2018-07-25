@@ -26,9 +26,47 @@ namespace WebBot.Console
             System.Console.WriteLine($"[{result.StatusCode}] {downloader.ReadContent(site, result).Substring(0, 500)}");
         }
 
+        //interface IWebBot
+        //{
+        //    IBotConfigure Configure { get; }
+        //    IPage GetPage();
+        //}
+
+        //interface IHttpDownloader
+        //{
+
+        //}
+
+        //interface IPage
+        //{
+
+        //}
+
+        //interface IBotConfigure
+        //{
+        //    IHttpDownloader httpDownloader { get;  }
+        //}
+
+        //class NewCrawler : IWebBot
+        //{ 
+        //    public IBotConfigure Configure => throw new NotImplementedException();
+        //}
+
         static void Main(string[] args)
         {
             //RunTest_GetPageWithCustomRequestAndSite();
+
+
+            //IWebBot webBot;
+            //webBot.UseRestSharpDownloader();
+
+            // 기사 저장
+            //webBot.GetPage().ToModel(IPageModel).ToObservable().SaveDatabase("News")
+            // Webbot -> Page -> IPageModel[] -> IObservable<IPageModel>
+            // Webbot -> Context.Page -> Context.PageModel -> Context.NextJob(url) -> Context.Page -> Context.PageModel -> {DB}
+
+            // 마그넷 저장
+            //webBot.GetPage().ToModel(BoardElementModel).ToObservable().GetPage().ToModel(MagnetRecordModel).ToSaveDatabase("Magnet")
 
             using (var startup = new Startup())
             {

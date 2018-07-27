@@ -129,9 +129,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
     <Compile Include="GlobalRedirectHandler.cs" />
     <Compile Include="Http\HttpClientDownloader.cs" />
     <Compile Include="Http\HttpClientEntry.cs" />
+    <Compile Include="Http\UrlAttribute.cs" />
     <Compile Include="Infrastructure\EncodingExtensions.cs" />
     <Compile Include="Infrastructure\ReadOnlyEnumerable.cs" />
     <Compile Include="PageDownload\RestSharpDownloader.cs" />
@@ -144,6 +146,8 @@
     <Compile Include="Request.cs" />
     <Compile Include="Site.cs" />
     <Compile Include="WebBot.cs" />
+    <Compile Include="XPath\XPathAttribute.cs" />
+    <Compile Include="XPath\XPathFetchType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -7,6 +7,7 @@ using WebBot.Logic;
 using WebBot.Logic.Http;
 using WebBot.Logic.Page;
 using WebBot.Logic.PageDownload;
+using WebBot.Logic.XPath;
 
 namespace WebBot.Console
 {
@@ -51,9 +52,21 @@ namespace WebBot.Console
         }
     }
 
-    public class TestModel : IPageModel
+    
+    [Url("http://bbs.ruliweb.com")]
+    public class RuliwebBoardModel : IPageModel
     {
+        [XPath(@"//*[@id=""board_list""]/div/div[2]/table/tbody/tr[*]", XPathFetchType.SubNodes)]
+        public class BoardElement
+        {
+            [XPath(@".//td[@class=""subject""]/div/a", XPathFetchType.InnterText)]
+            public string Subject;
+        }
 
+        [Url("hobby/board/300018")]
+        public BoardElement[] HobbyBoardElements;
+
+        public string Test;
     }
 
     public class Startup : IDisposable
@@ -90,8 +103,8 @@ namespace WebBot.Console
             var bot = serviceProvider.GetService<Logic.WebBot>();
             //bot.Run(startUrl);
 
-            var page = bot.ReadPage<TestModel>(startUrl);
-            System.Console.WriteLine(page.Text.Substring(0, 100));
+            var page = bot.ReadPage<RuliwebBoardModel>();
+            //System.Console.WriteLine(page.Content.Substring(0, 100));
         }
 
         void IDisposable.Dispose()

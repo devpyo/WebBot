@@ -57,7 +57,7 @@ namespace WebBot.Console
     public class RuliwebBoardModel : IPageModel
     {
         [XPath(@"//*[@id=""board_list""]/div/div[2]/table/tbody/tr[*]", XPathFetchType.SubNodes)]
-        public class BoardElement
+        public class BoardElement : IPageModel
         {
             [XPath(@".//td[@class=""subject""]/div/a", XPathFetchType.InnterText)]
             public string Subject;
@@ -66,7 +66,8 @@ namespace WebBot.Console
         [Url("hobby/board/300018")]
         public BoardElement[] HobbyBoardElements;
 
-        public string Test;
+        [Url("hobby/board/300018")]
+        public BoardElement[] PoliticBoardElements;
     }
 
     public class Startup : IDisposable
